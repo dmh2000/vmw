@@ -1,0 +1,116 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="content-section">
+    <ul>
+        <li>ip_pool_list_start - Specified in the format 192.168.0.1-192.168.0.10. multiple ranges can be specified,
+            use comma to separate i.e 192.168.0.1-192.168.0.10,192.168.0.50-192.168.0.60</li>
+        <li>ip_pool_mask - Specified in CIDR format (i.e. /24, /29, etc)</li>
+        <li>ip_pool_gateway - Specified as 192.168.0.254</li>
+        <li>number_of_hosts - count the total number of IPs across the specified range(s) and it must be at least 2x
+            this variable. </li>
+        <li>ip_pool_dns - comma separated list of DNS server IPs</li>
+        <li>ip_pool_suffix - valid domain name for dns suffix</li>
+    </ul>
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Create VTEP IP Pool</legend>
+            <div class="form-group">
+                {{ form.ip_pool_list.label(class="form-control-label") }}
+
+                {% if form.ip_pool_list.errors %}
+                {{ form.ip_pool_list(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.ip_pool_list_start.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.ip_pool_list(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+
+
+
+            <div class="form-group">
+                {{ form.ip_pool_mask.label(class="form-control-label") }}
+
+                {% if form.ip_pool_mask.errors %}
+                {{ form.ip_pool_mask(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.ip_pool_mask_start.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.ip_pool_mask(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                {{ form.ip_pool_gateway.label(class="form-control-label") }}
+
+                {% if form.ip_pool_gateway.errors %}
+                {{ form.ip_pool_gateway(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.ip_pool_gateway_start.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.ip_pool_gateway(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                {{ form.number_of_hosts.label(class="form-control-label") }}
+
+                {% if form.number_of_hosts.errors %}
+                {{ form.number_of_hosts(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.number_of_hosts_start.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.number_of_hosts(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                {{ form.ip_pool_dns.label(class="form-control-label") }}
+
+                {% if form.ip_pool_dns.errors %}
+                {{ form.ip_pool_dns(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.ip_pool_dns_start.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.ip_pool_dns(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.ip_pool_suffix.label(class="form-control-label") }}
+
+                {% if form.ip_pool_suffix.errors %}
+                {{ form.ip_pool_suffix(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.ip_pool_suffix_start.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.ip_pool_suffix(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+
+         </fieldset>
+
+        <div class="form-group">
+            {{ form.submit(class="btn btn-outline-info") }}
+        </div>
+    </form>
+</div>
+{% endblock content %}
