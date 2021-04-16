@@ -1,6 +1,5 @@
 # vmw
-
-some ad-hoc python stuff for vmware
+python scripts for vmware, requested by a colleague
 
 ## basic
    python function to create a vmware nsx ip pool xml file
